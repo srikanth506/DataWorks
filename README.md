@@ -1,3 +1,11 @@
+## 📊 Progress Summary
+
+- **Total Days Logged:** 3
+- **SQL Topics Covered:** 3 days
+- **Big Data Activities:** 3 days
+- **Data Science Activities:** 0 days
+- **Job Search Activities:** 0 days
+
 # DataWorks
 I will use this repository to add the files related to big data, data science, data analytics projects
 
@@ -6,7 +14,12 @@ I will use this repository to add the files related to big data, data science, d
 This document tracks my daily and weekly progress in SQL, Big Data, Data Science, and Job Search activities.
 
 <!-- START_TABLE -->
-|   Week |   Day | SQL                      | SQL Resources                                                 | Big Data                   | Big Data Resources                                                                   | Data Science   | DS Resources   | Job Search   | Job Search Resources   |
-|-------:|------:|:-------------------------|:--------------------------------------------------------------|:---------------------------|:-------------------------------------------------------------------------------------|:---------------|:---------------|:-------------|:-----------------------|
-|      2 |     4 | basics, joins, operators | [W3 Schools - SQL](https://www.w3schools.com/sql/default.asp) | Working on PySpark project | [Kaggle Brzilian olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) |                |                |              |                        |
+| Date                | SQL                      | SQL Resources                                                 | Big Data                   | Big Data Resources                                                                   | Data Science   | DS Resources   | Job Search   | Job Search Resources   |
+|:--------------------|:-------------------------|:--------------------------------------------------------------|:---------------------------|:-------------------------------------------------------------------------------------|:---------------|:---------------|:-------------|:-----------------------|
+| **October 2025**    |                          |                                                               |                            |                                                                                      |                |                |              |                        |
+| 2026-01-01 00:00:00 | basics, joins, operators | [W3 Schools - SQL](https://www.w3schools.com/sql/default.asp) | Working on PySpark project | [Kaggle Brzilian olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) |                |                |              |                        |
+| **November 2025**   |                          |                                                               |                            |                                                                                      |                |                |              |                        |
+| 2026-01-01 00:00:00 | basics, joins, operators | [W3 Schools - SQL](https://www.w3schools.com/sql/default.asp) | Working on PySpark project | [Kaggle Brzilian olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) |                |                |              |                        |
+| **December 2025**   |                          |                                                               |                            |                                                                                      |                |                |              |                        |
+| 2026-01-01 00:00:00 | basics, joins, operators | [W3 Schools - SQL](https://www.w3schools.com/sql/default.asp) | Working on PySpark project | [Kaggle Brzilian olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) |                |                |              |                        |
 <!-- END_TABLE -->

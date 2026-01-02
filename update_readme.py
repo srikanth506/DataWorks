@@ -1,71 +1,106 @@
 import pandas as pd
 from openpyxl import load_workbook
 
-# === File paths and sheet ===
+# === Config ===
 EXCEL_PATH = "/Users/srikanth/Library/CloudStorage/OneDrive-Personal/DataWorks/DataWorks Progress Plan.xlsx"
-SHEET_NAME = "2025 - October"
 README_PATH = "README.md"
 
-# === Step 1: Load Excel and clean table ===
-wb = load_workbook(EXCEL_PATH, data_only=True)
-ws = wb[SHEET_NAME]
-
-# Convert sheet to list of lists
-data = list(ws.values)
-
-# Find the first non-empty row (header)
-header_row = None
-for i, row in enumerate(data):
-    if any(cell is not None for cell in row):
-        header_row = i
-        break
-
-# Extract headers and data cleanly
-columns = [c for c in data[header_row] if c is not None]
-data_rows = [
-    [cell for cell in row[:len(columns)]]
-    for row in data[header_row + 1:]
-    if any(cell is not None for cell in row)
+SHEETS_IN_ORDER = [
+    "2025 - October",
+    "2025 - November",
+    "2025 - December"
 ]
 
-df = pd.DataFrame(data_rows, columns=columns)
+START_TABLE = "<!-- START_TABLE -->"
+END_TABLE = "<!-- END_TABLE -->"
+START_SUMMARY = "<!-- START_SUMMARY -->"
+END_SUMMARY = "<!-- END_SUMMARY -->"
 
-# === Step 2: Replace hyperlinks with Markdown links ===
-# Loop through Excel cells directly to preserve hyperlinks
-for r_idx, row in enumerate(ws.iter_rows(min_row=header_row + 2, max_col=len(columns))):
-    for c_idx, cell in enumerate(row):
-        if cell.hyperlink:
-            display_text = str(cell.value).strip() if cell.value else cell.hyperlink.target
-            df.iat[r_idx, c_idx] = f"[{display_text}]({cell.hyperlink.target})"
 
-# === Step 3: Convert DataFrame to Markdown ===
-markdown_table = df.to_markdown(index=False)
+# === Helper: Read one sheet with hyperlinks ===
+def read_sheet(wb, sheet_name):
+    ws = wb[sheet_name]
+    data = list(ws.values)
 
-# === Step 4: Replace table in README ===
+    header_row = next(i for i, r in enumerate(data) if any(r))
+    columns = [c for c in data[header_row] if c is not None]
+
+    rows = [
+        row[:len(columns)]
+        for row in data[header_row + 1:]
+        if any(row)
+    ]
+
+    df = pd.DataFrame(rows, columns=columns)
+
+    for r_idx, row in enumerate(ws.iter_rows(min_row=header_row + 2, max_col=len(columns))):
+        for c_idx, cell in enumerate(row):
+            if cell.hyperlink:
+                text = str(cell.value).strip() if cell.value else cell.hyperlink.target
+                df.iat[r_idx, c_idx] = f"[{text}]({cell.hyperlink.target})"
+
+    return df
+
+
+# === Load workbook ===
+wb = load_workbook(EXCEL_PATH, data_only=True)
+
+final_rows = []
+summary_df = []
+
+for sheet in SHEETS_IN_ORDER:
+    if sheet not in wb.sheetnames:
+        continue
+
+    year, month = sheet.split(" - ")
+    df = read_sheet(wb, sheet)
+
+    # Month separator row
+    separator = {col: "" for col in df.columns}
+    separator[df.columns[0]] = f"**{month} {year}**"
+    final_rows.append(separator)
+
+    final_rows.extend(df.to_dict(orient="records"))
+    summary_df.append(df)
+
+# === Final DataFrame ===
+final_df = pd.DataFrame(final_rows)
+
+# === Generate summary ===
+summary_all = pd.concat(summary_df, ignore_index=True)
+
+summary_md = f"""
+## 📊 Progress Summary
+
+- **Total Days Logged:** {len(summary_all)}
+- **SQL Topics Covered:** {summary_all['SQL'].astype(bool).sum()} days
+- **Big Data Activities:** {summary_all['Big Data'].astype(bool).sum()} days
+- **Data Science Activities:** {summary_all['Data Science'].astype(bool).sum()} days
+- **Job Search Activities:** {summary_all['Job Search'].astype(bool).sum()} days
+""".strip()
+
+# === Markdown table ===
+table_md = final_df.to_markdown(index=False)
+
+# === Update README ===
 with open(README_PATH, "r", encoding="utf-8") as f:
     content = f.read()
 
-start_marker = "<!-- START_TABLE -->"
-end_marker = "<!-- END_TABLE -->"
+# Summary replace
+if START_SUMMARY in content and END_SUMMARY in content:
+    before = content.split(START_SUMMARY)[0]
+    after = content.split(END_SUMMARY)[-1]
+    content = f"{before}{START_SUMMARY}\n{summary_md}\n{END_SUMMARY}{after}"
+else:
+    content = f"{summary_md}\n\n{content}"
 
-if start_marker not in content or end_marker not in content:
-    raise ValueError("README.md must contain <!-- START_TABLE --> and <!-- END_TABLE --> markers.")
+# Table replace
+before = content.split(START_TABLE)[0]
+after = content.split(END_TABLE)[-1]
 
-before = content.split(start_marker)[0]
-after = content.split(end_marker)[-1]
+content = f"{before}{START_TABLE}\n{table_md}\n{END_TABLE}{after}"
 
-new_content = (
-    before
-    + start_marker
-    + "\n"
-    + markdown_table
-    + "\n"
-    + end_marker
-    + after
-)
-
-# === Step 5: Write updated README ===
 with open(README_PATH, "w", encoding="utf-8") as f:
-    f.write(new_content)
+    f.write(content)
 
-print("✅ README.md successfully updated with the latest Excel data and hyperlinks!")
+print("✅ README updated with month separators and summary")
