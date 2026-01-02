@@ -1,4 +1,3 @@
-<!-- AUTO-GENERATED-START -->
 # DataWorks
 I will use this repository to add the files related to big data, data science, data analytics projects
 
@@ -21,4 +20,3 @@ This document tracks my daily and weekly progress in SQL, Big Data, Data Science
 | Date                | SQL                      | SQL Resources                                                 | Big Data                   | Big Data Resources                                                                   | Data Science   | DS Resources   | Job Search   | Job Search Resources   |
 |:--------------------|:-------------------------|:--------------------------------------------------------------|:---------------------------|:-------------------------------------------------------------------------------------|:---------------|:---------------|:-------------|:-----------------------|
 | 2026-01-01 00:00:00 | basics, joins, operators | [W3 Schools - SQL](https://www.w3schools.com/sql/default.asp) | Working on PySpark project | [Kaggle Brzilian olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) |                |                |              |                        |
-<!-- AUTO-GENERATED-END -->
