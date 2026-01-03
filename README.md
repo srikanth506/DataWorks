@@ -4,11 +4,11 @@ I will use this repository to add the files related to big data, data science, d
 
 ## 📊 Progress Summary
 
-- **Total Days Logged:** 1
-- **SQL Topics Covered:** 1 days
+- **Total Days Logged:** 2
+- **SQL Topics Covered:** 2 days
 - **Big Data Activities:** 1 days
 - **Data Science Activities:** 0 days
-- **Job Search Activities:** 0 days
+- **Job Search Activities:** 1 days
 
 
 ## Career Progress Plan
@@ -17,6 +17,7 @@ This document tracks my daily and weekly progress in SQL, Big Data, Data Science
 
 ### 📅 2026 - January
 
-| Date                | SQL                      | SQL Resources                                                 | Big Data                   | Big Data Resources                                                                   | Data Science   | DS Resources   | Job Search   | Job Search Resources   |
-|:--------------------|:-------------------------|:--------------------------------------------------------------|:---------------------------|:-------------------------------------------------------------------------------------|:---------------|:---------------|:-------------|:-----------------------|
-| 2026-01-01 00:00:00 | basics, joins, operators | [W3 Schools - SQL](https://www.w3schools.com/sql/default.asp) | Working on PySpark project | [Kaggle Brzilian olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) |                |                |              |                        |
+| Date                | SQL                      | SQL Resources                                                 | Big Data                   | Big Data Resources                                                                   | Data Science   | DS Resources   | Job Search                           | Job Search Resources                                                                                                                                            |
+|:--------------------|:-------------------------|:--------------------------------------------------------------|:---------------------------|:-------------------------------------------------------------------------------------|:---------------|:---------------|:-------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 2026-01-01 00:00:00 | basics, joins, operators | [W3 Schools - SQL](https://www.w3schools.com/sql/default.asp) | Working on PySpark project | [Kaggle Brzilian olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) |                |                |                                      |                                                                                                                                                                 |
+| 2026-01-02 00:00:00 | Practiced few sql codes  | [Leetcode](https://leetcode.com/problemset/database/)         |                            |                                                                                      |                |                | Applied to few positions on linkedin | [Linkedin](https://www.linkedin.com/jobs/search-results/?keywords=entry%20level%20in%20data%20analytics%20Easy%20Apply%20posted%20in%20the%20past%2024%20hours) |
